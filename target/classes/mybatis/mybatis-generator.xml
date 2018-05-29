@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="D:\mysql-connector-java-5.1.46\mysql-connector-java-5.1.46.jar" />
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/lcxs?useUnicode=true"
+			 userId="root"
+			password="">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 指定model的生成位置 -->
+		<javaModelGenerator targetPackage="com.lcxs.model.finance"
+		
+			targetProject="lcxs">
+			<!-- 指定model的生成项目位置 -->
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.lcxs.mapper.finance"
+			targetProject="lcxs">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- mapper的xml文件 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.lcxs.mapper.finance" targetProject="lcxs">
+			<property name="enableSubPackages" value="true" />			
+		</javaClientGenerator>
+				
+	    <table tableName="c_user_ts" domainObjectName="UserTsBean"
+
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+	    </table>
+	    
+	</context>
+</generatorConfiguration>
