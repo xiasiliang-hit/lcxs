@@ -64,11 +64,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </thead>
        <c:forEach items="${pageModel.list }" var="u">
 	     <tr>
-	     	  <td>${u.vid} </td>
+	     	  <td class="_vid">${u.vid} </td>
               <td>${u.phone} </td>
               <td>${u.realname}</td>
-        	  <td>${u.ljmoney}</td>
-        	  <td>${u.dkmoney}</td>
+        	  <td id="_ljm">${u.ljmoney}</td>
+        	  <td id="_dkm">${u.dkmoney}</td>
         	  <td>${u.count}</td>
         	  <td>${u.mtime}</td>
         	  <shiro:hasPermission name="FRIENDS_ALL">
@@ -115,6 +115,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		             success: function(data){
 		             var dataObj=eval("("+data+")");
 	    		  		if(dataObj.code==1){
+
+
 	    		  		layer.msg('打款成功!', {
 							  icon: 6,
 							  time: 1000

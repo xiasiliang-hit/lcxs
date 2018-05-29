@@ -12,8 +12,8 @@ public class BaseConditionVO {
 	private String keywords;
 	private String keywordsname;
 	private String keywordsnumber;
-	private int ctimepx=1;
-	private int ttimepx;
+	private int ctimepx=0;
+	private int ttimepx=0;
 	private int mtimepx;
 	private String realname;
 	public String getRealname() {

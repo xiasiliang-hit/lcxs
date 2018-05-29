@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="Css/style.css" />
     <link rel="stylesheet" type="text/css" href="Css/calendar-blue.css"/>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="Js/jquery.js"></script>
     <script type="text/javascript" src="layer-v3.1.1/layer/layer.js"></script>
     <script type="text/javascript" src="Js/jquery.sorted.js"></script>
@@ -52,13 +53,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          cursor:pointer; 
          }  
     </style>
+   
 </head>
 <body onload="getCurrentMonthFirst()">
 <div style="float:left">
-<form class="form-inline definewidth m20"action="receipt/queryAll/3" method="post" id="form">
+<form class="form-inline definewidth m20" action="receipt/queryAll/3" method="post" id="form">
 <input type="hidden" name="" id="real" value="${staff.realname }">
-<input type="hidden" name="ctimepx" id="ctimepx" value="${vo.ctimepx }"> 
-<input type="hidden" name="ttimepx" id="ttimepx" value="${vo.ttimepx }">   
+<input type="hidden" name="ctimepx" id="ctimepx" value="${vo.ctimepx}"> 
+<input type="hidden" name="ttimepx" id="ttimepx" value="${vo.ttimepx}">   
 <div style="float: left;width: 20%">
     关键字：
     </div>
@@ -72,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div style="margin: 20px 0px 0px 30px">
 	<input type="text"   name="time_start" id="J_time_start" style="margin-top:20px; height:24px;width:150px;font-size:15px;" onblur="start()">
-    -<input type="text"   name="time_end" id="J_time_end" style="margin-top:20px;height:24px;width:150px;font-size:15px;" onblur="end()">
+    <input type="text"   name="time_end" id="J_time_end" style="margin-top:20px;height:24px;width:150px;font-size:15px;" onblur="end()">
     <input type="button" class="btn btn-success"  id="sub" style="margin-top:10px;" value="按日期查询" >
     <input type="button"  class="btn btn-success" id="selectteacher" style="margin-top:10px;" value="按日期导出">
     <shiro:hasPermission name="RECEIPT_ALL">
@@ -99,8 +101,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <th>红包</th>
         <th>拿货价格</th>
         <th>渠道来源</th>
-        <th id="tzsj">投资时间</th>
-        <th id="tjsj">提交时间</th>
+        <th id="tzsj">投资时间<img style="width: 16px;height:16px;" src="images/pximg.png"></th>
+        <th id="tjsj">提交时间<img style="width: 16px;height:16px;" src="images/pximg.png"></th>
         <th>状态</th>
         <th>操作</th>
     </tr>
@@ -176,14 +178,14 @@ function fx() {
 }
 $("#tzsj").click(function(){
 	var a=$("#ctimepx").val();
-	$("#ctimepx").val(a+1);
-	$("#ttimepx").attr("value","");
+	$("#ctimepx").val(Number(a)+1);
+	$("#ttimepx").val("0");
 	document.getElementById("form").submit();
 })
 $("#tjsj").click(function(){
 	var a=$("#ttimepx").val();
-	$("#ttimepx").val(a+1);
-	$("#ctimepx").attr("value","");
+	$("#ttimepx").val(Number(a)+1);
+	$("#ctimepx").val("0");
 	document.getElementById("form").submit();
 })
 
@@ -281,7 +283,7 @@ function getCurrentMonthFirst(){
    }
    window.location.href="receipt/queryAnyDayOfReceipt/"+start+"/"+end+"/"+3;
  });
-		 function details(rid){
+   function details(rid){
 		    layer.open({
 			  type: 2,
 			  title: false,

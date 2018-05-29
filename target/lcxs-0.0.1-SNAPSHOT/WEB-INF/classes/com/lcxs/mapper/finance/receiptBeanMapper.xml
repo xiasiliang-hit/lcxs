@@ -52,16 +52,16 @@
 	    <if test="keywords!=null">
 	    		and ( realname like "%"#{keywords}"%" or phone like "%"#{keywords}"%" or productname like "%"#{keywords}"%")
 	    </if>
-	    <if test="ctimepx!=null and ctimepx!='' and ctimepx%2!=0">
-    	ORDER BY ctime desc
+	    <if test="ctimepx!=null and ctimepx!=0 and ctimepx%2!=0">
+    		ORDER BY ctime desc
 	    </if>
-	    <if test="ctimepx!=null and ctimepx!='' and ctimepx%2!=1">
+	    <if test="ctimepx!=null and ctimepx!=0 and ctimepx%2!=1">
 	    	ORDER BY ctime 
 	    </if>
-	    <if test="ttimepx!=null and ttimepx!='' and ttimepx%2!=0">
+	    <if test="ttimepx!=null and ttimepx!=0 and ttimepx%2!=0">
 	    	ORDER BY ttime desc
 	    </if>
-	    <if test="ttimepx!=null and ttimepx!='' and ttimepx%2!=1">
+	    <if test="ttimepx!=null and ttimepx!=0 and ttimepx%2!=1">
 	    	ORDER BY ttime 
 	    </if>
     </where>
