@@ -1,28 +1,4 @@
 package com.lcxs.service.finance.impl;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lcxs.mapper.base.invitationBeanMapper;
@@ -43,6 +19,15 @@ import com.lcxs.model.product.productBean;
 import com.lcxs.service.finance.IReceiptService;
 import com.lcxs.utils.BaseConditionVO;
 import com.lcxs.utils.Time;
+import org.apache.poi.hssf.usermodel.*;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class receiptServiceImpl implements IReceiptService{
@@ -173,24 +158,37 @@ public class receiptServiceImpl implements IReceiptService{
 		}else{
 			invitationBean invi = inMapper.selectByUserid(us.getVid());
 			invitationBean in=new invitationBean();
-			if(receipt.getTmoney()>=5000){
-				if(invi==null || "".equals(invi)){
-					in.setCtime(Time.getTime());
-					in.setUserid(us.getVid());
-					in.setUcode(us.getOwninvitation());
-					in.setLjmoney(10.0);
-					in.setMtime(Time.getTime());
-					inMapper.insertSelective(in);
-				}else{
-					Object count = urMapper.queryReceiptNumByVid(user.getVid());
-					if(String.valueOf(count)=="1" || "1".equals(String.valueOf(count))){
-						invi.setLjmoney(invi.getLjmoney()+10.0);
-					}else{
-						invi.setLjmoney(invi.getLjmoney()+5.0);
+				if(receipt.getTmoney()>=5000){
+
+					// if tuishou add different logic : siliang
+					if (us.getOwninvitation().substring(0, 2).equals("T-")) {
+						invi.setLjmoney(invi.getLjmoney() + 15.0);
 					}
-					inMapper.updateByPrimaryKeySelective(invi);
+					else
+					{
+
+					if(invi==null || "".equals(invi)){
+						in.setCtime(Time.getTime());
+						in.setUserid(us.getVid());
+						in.setUcode(us.getOwninvitation());
+
+						in.setLjmoney(10.0);
+						in.setMtime(Time.getTime());
+						inMapper.insertSelective(in);
+					}else{
+						Object count = urMapper.queryReceiptNumByVid(user.getVid());
+
+						if (String.valueOf(count) == "1" || "1".equals(String.valueOf(count))) {
+							invi.setLjmoney(invi.getLjmoney() + 10.0);
+
+						} else {
+							invi.setLjmoney(invi.getLjmoney() + 5.0);
+						}
+
+						inMapper.updateByPrimaryKeySelective(invi);
+					}
+
 				}
-			}
 			}
 		}
 		try {
