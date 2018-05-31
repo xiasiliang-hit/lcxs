@@ -141,6 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <input type="hidden" name="pageNum" id="pageNum" value="${pageModel.pageNum}">
    <input type="hidden" name="keywords" value="${vo.keywords }">  
     <input type="hidden" name="pageSize" id="pageSize" value="${pageModel.pageSize}">
+    <input type="hidden" name="ctimepx" id="#" value="${vo.ctimepx}">
+    <input type="hidden" name="ttimepx" id="#" value="${vo.ttimepx}">
 </form>
 <div class="inline pull-right page" align="center">
   <%@include file="../../pageBar.jsp" %>
@@ -177,15 +179,15 @@ function fx() {
     }
 }
 $("#tzsj").click(function(){
-	var a=$("#ctimepx").val();
-	$("#ctimepx").val(Number(a)+1);
-	$("#ttimepx").val("0");
-	document.getElementById("form").submit();
-})
-$("#tjsj").click(function(){
 	var a=$("#ttimepx").val();
 	$("#ttimepx").val(Number(a)+1);
 	$("#ctimepx").val("0");
+	document.getElementById("form").submit();
+})
+$("#tjsj").click(function(){
+	var a=$("#ctimepx").val();
+	$("#ctimepx").val(Number(a)+1);
+	$("#ttimepx").val("0");
 	document.getElementById("form").submit();
 })
 
