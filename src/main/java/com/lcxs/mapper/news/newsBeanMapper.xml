@@ -20,7 +20,12 @@
     select
     <include refid="News_Column_List" />
     from c_news
+    <if test="keywords!=null">
+      where title like "%"#{keywords}"%"
+    </if>
   </select>
-
+  <delete id="deleteByNewsid" parameterType="java.lang.Long">
+    delete from c_news where id = #{id,jdbcType=BIGINT}
+  </delete>
 
 </mapper>

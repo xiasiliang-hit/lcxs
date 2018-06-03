@@ -27,4 +27,10 @@ public class newsController {
         return "news/newsList";
     }
 
+    @RequestMapping("/deleteByNewsid/{id}")
+    public String deleteByNewsid(@PathVariable Long id){
+        nService.deleteByNewsid(id);
+        return "redirect:/news/findAll";
+    }
+
 }

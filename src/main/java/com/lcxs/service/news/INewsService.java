@@ -10,4 +10,7 @@ public interface INewsService {
     查找所有新闻信息
      */
     PageInfo<newsBean> queryAll(BaseConditionVO vo);
+
+    //根据编号删除新闻
+    Long deleteByNewsid(Long id);
 }

@@ -42,13 +42,11 @@
 <div>
 
 </div>
-<form class="form-inline definewidth m20" action="cshop/findAll" method="post">
+<form class="form-inline definewidth m20" action="news/findAll" method="post">
     关键字：
     <input type="text" name="keywords" id="keywords"class="abc input-default" placeholder="请输入新闻标题" value="${vo.keywords }">&nbsp;&nbsp;
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
     <button type="button" class="btn btn-success" id="addnew">新增新闻</button>
-    <button type="button" class="btn btn-success" id="findold">查看日志</button>
-    <button type="button" class="btn btn-success" id="findoldS">查看历史商户</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
@@ -75,7 +73,7 @@
             <td>
                 <a href="cproduct/findByShopid/${u.id }">新闻详情</a>
                 <a href="cshop/goToUpdate/${u.id }">编辑</a>
-                <a href="cshop/deleteByShopid/${u.id}"   onclick="return confirm('确定删除?');">删除</a>
+                <a href="news/deleteByNewsid/${u.id}"   onclick="return confirm('确定删除?');">删除</a>
             </td>
         </tr>
     </c:forEach>

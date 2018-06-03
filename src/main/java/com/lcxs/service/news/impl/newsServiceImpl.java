@@ -25,4 +25,8 @@ public class newsServiceImpl implements INewsService{
         PageInfo<newsBean> pageinfo=new PageInfo<newsBean>(list);
         return pageinfo;
     }
+    @Override
+    public Long deleteByNewsid(Long id) {
+        return nwMapper.deleteByNewsid(id);
+    }
 }
