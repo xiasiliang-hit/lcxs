@@ -41,6 +41,10 @@
 						class="nav-item-inner nav-monitor">财务管理</div></li>
 					<li class="nav-item dl-selected"><div
 						class="nav-item-inner nav-monitor">红包管理</div></li>
+				<li class="nav-item dl-selected"><div
+						class="nav-item-inner nav-monitor">推手管理</div></li>
+				<li class="nav-item dl-selected"><div
+						class="nav-item-inner nav-monitor">新闻管理</div></li>
 			</ul>
 		</div>
 		<ul id="J_NavContent" class="dl-tab-conten">
@@ -94,12 +98,7 @@
 						id : '5',
 						text : '专属客户',
 						href : 'staff/findUserByStaffSid/'+${staff.stype}+"/"+${staff.sid}
-					},
-                        {
-                            id : '6',
-                            text : '推手用户回单',
-                            href : 'receipt/queryReceiptData'
-                        }
+					}
 					]
 				} ]
 			} ,{
@@ -174,7 +173,39 @@
 					}
 					]
 				}]
-			}
+			},{
+                id : '8',
+                homePage : '1',
+                menu : [ {
+                    text : '推手管理',
+                    items : [ {
+                        id : '1',
+                        text : '推手',
+                        href : '#'
+                    },{
+                        id : '3',
+                        text : '推手',
+                        href : '#'
+                    }
+                    ]
+                }]
+            },{
+                id : '9',
+                homePage : '1',
+                menu : [ {
+                    text : '新闻管理',
+                    items : [ {
+                        id : '1',
+                        text : '新闻清单',
+                        href : 'news/findAll'
+                    },{
+                        id : '3',
+                        text : '新闻新闻',
+                        href : 'user/invite'
+                    }
+                    ]
+                }]
+            }
 			];
 			new PageUtil.MainPage({
 				modulesConfig : config

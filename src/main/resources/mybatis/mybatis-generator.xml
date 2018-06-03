@@ -17,7 +17,7 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 指定model的生成位置 -->
-		<javaModelGenerator targetPackage="com.lcxs.model.finance"
+		<javaModelGenerator targetPackage="com.lcxs.model.news"
 		
 			targetProject="lcxs">
 			<!-- 指定model的生成项目位置 -->
@@ -25,13 +25,13 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.lcxs.mapper.finance"
+		<sqlMapGenerator targetPackage="com.lcxs.mapper.news"
 			targetProject="lcxs">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- mapper的xml文件 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.lcxs.mapper.finance" targetProject="lcxs">
+			targetPackage="com.lcxs.mapper.news" targetProject="lcxs">
 			<property name="enableSubPackages" value="true" />			
 		</javaClientGenerator>
 				

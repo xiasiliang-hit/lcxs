@@ -94,6 +94,7 @@ public class SecurityRealm extends AuthorizingRealm {
 			 info.addStringPermission("CHANNEL_ALL");
 			 info.addStringPermission("RECEIPT_LOOK");
 			 info.addStringPermission("RECEIPT_ALL");
+			 info.addStringPermission("NEWS_ALL");
 		 }
 		 
 		 if(type==2){
@@ -123,6 +124,7 @@ public class SecurityRealm extends AuthorizingRealm {
 			 info.addStringPermission("CHANNEL_ALL");
 			 info.addStringPermission("RECEIPT_LOOK");
 			 info.addStringPermission("RECEIPT_ALL");
+			 info.addStringPermission("NEWS_ALL");
 		 }
 		 
 		 if(type==4){
@@ -144,6 +146,7 @@ public class SecurityRealm extends AuthorizingRealm {
 			 info.addStringPermission("CHANNEL_ALL");
 			 info.addStringPermission("RECEIPT_LOOK");
 			 info.addStringPermission("RECEIPT_ALL");
+			 info.addStringPermission("NEWS_ALL");
 		 }
 		 
 		 if(type==5){
