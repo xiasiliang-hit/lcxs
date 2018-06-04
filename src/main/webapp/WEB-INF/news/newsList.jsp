@@ -71,14 +71,14 @@
             <td>${u.collection}</td>
             <td>${u.ntime}</td>
             <td>
-                <a href="cproduct/findByShopid/${u.id }">新闻详情</a>
-                <a href="cshop/goToUpdate/${u.id }">编辑</a>
+                <a href="news/findByid/${u.id }">新闻详情</a>
+                <a href="news/goToUpdate/${u.id }">编辑</a>
                 <a href="news/deleteByNewsid/${u.id}"   onclick="return confirm('确定删除?');">删除</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<form action="cshop/findAll" id="pager" name="pager" method="post">
+<form action="news/findAll" id="pager" name="pager" method="post">
     <input type="hidden" name="pageNum" id="pageNum" value="${pageModel.pageNum}">
     <input type="hidden" name="keywords" value="${vo.keywords }">
     <input type="hidden" name="pageSize" id="pageSize" value="${pageModel.pageSize}">
@@ -93,7 +93,7 @@
 
         $('#addnew').click(function(){
 
-            window.location.href="<%=path%>/cshop/goToAdd";
+            window.location.href="<%=path%>/news/goToAdd";
         });
 
     });

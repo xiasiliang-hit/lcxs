@@ -27,5 +27,31 @@
   <delete id="deleteByNewsid" parameterType="java.lang.Long">
     delete from c_news where id = #{id,jdbcType=BIGINT}
   </delete>
+  <insert id="insert" parameterType="com.lcxs.model.news.newsBean">
+    insert into c_news(id,title,context,source,praise,collection,ntime,imgurl)
+    VALUES (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR},
+      #{source,jdbcType=VARCHAR}, #{praise,jdbcType=BIGINT}, #{collection,jdbcType=BIGINT},
+      #{ntime,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <select id="findByid" resultType="com.lcxs.model.news.newsBean" parameterType="java.lang.Long">
+    SELECT
+    <include refid="News_Column_List" />
+    FROM c_news
+    WHERE id = #{id,jdbcType=BIGINT}
+
+  </select>
+  <update id="update" parameterType="com.lcxs.model.news.newsBean">
+    UPDATE c_news
+    SET
+    title=#{title,jdbcType=VARCHAR},
+    context=#{context,jdbcType=VARCHAR},
+    source=#{source,jdbcType=VARCHAR},
+    praise=#{praise,jdbcType=BIGINT},
+    collection=#{collection,jdbcType=BIGINT},
+    ntime=#{ntime,jdbcType=VARCHAR},
+    imgurl=#{imgurl,jdbcType=VARCHAR}
+    WHERE id=#{id,jdbcType=BIGINT}
+
+  </update>
 
 </mapper>

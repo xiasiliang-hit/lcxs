@@ -13,4 +13,10 @@ public interface INewsService {
 
     //根据编号删除新闻
     Long deleteByNewsid(Long id);
+    //增加新闻
+    int insert(newsBean news);
+    //根据编号查找新闻
+    newsBean findByid(Long id);
+    //修改新闻
+    int update(newsBean news);
 }

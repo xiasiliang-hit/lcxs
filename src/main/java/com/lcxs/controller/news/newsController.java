@@ -32,5 +32,30 @@ public class newsController {
         nService.deleteByNewsid(id);
         return "redirect:/news/findAll";
     }
-
+    @RequestMapping("/goToAdd")
+    public String goToAdd(BaseConditionVO vo,Model model){
+        return "news/insert";
+    }
+    @RequestMapping("/insert")
+    public String insert(newsBean news){
+        if(news.getId()==null||news.getId().equals("")) {
+            nService.insert(news);
+            return "redirect:/news/findAll";
+        }else{
+            nService.update(news);
+            return "redirect:/news/findAll";
+        }
+    }
+    @RequestMapping("/goToUpdate/{id}")
+    public String goToUpdate(@PathVariable long id,Model model){
+        newsBean news = nService.findByid(id);
+        model.addAttribute("news",news);
+        return "news/insert";
+    }
+    @RequestMapping("/findByid/{id}")
+    public String findByid(@PathVariable long id,Model model){
+        newsBean news = nService.findByid(id);
+        model.addAttribute("news",news);
+        return "news/newsDetails";
+    }
 }

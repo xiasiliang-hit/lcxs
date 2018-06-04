@@ -198,10 +198,6 @@
                         id : '1',
                         text : '新闻清单',
                         href : 'news/findAll'
-                    },{
-                        id : '3',
-                        text : '新闻新闻',
-                        href : 'user/invite'
                     }
                     ]
                 }]
