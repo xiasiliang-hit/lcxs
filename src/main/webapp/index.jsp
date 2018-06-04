@@ -178,15 +178,12 @@
                 homePage : '1',
                 menu : [ {
                     text : '推手管理',
-                    items : [ {
-                        id : '1',
-                        text : '推手',
-                        href : '#'
-                    },{
-                        id : '3',
-                        text : '推手',
-                        href : '#'
-                    }
+                    items : [
+                        {
+                            id : '1',
+                            text : '推手用户回单',
+                            href : 'ts/getTsInfo'
+                        }
                     ]
                 }]
             },{

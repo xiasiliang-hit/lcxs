@@ -43,6 +43,14 @@
   	 	and (u.phone like "%"#{keywords}"%" or u.realname like "%"#{keywords}"%")
   	 </if>
   </select>
+  <select id="queryTs" resultType="com.lcxs.model.base.friendMessage" parameterType="com.lcxs.utils.BaseConditionVO">
+    select u.vid as vid,u.phone as phone,u.realname as realname,u.alipay as alipay
+    ,i.ljmoney as ljmoney,i.dkmoney as dkmoney,i.ctime as ctime,i.mtime as mtime
+    from c_user u INNER JOIN c_invitation i on u.vid=i.userid  and u.status=1 and u.owninvitation like "T-%"
+    <if test="keywords!=null">
+      and (u.phone like "%"#{keywords}"%" or u.realname like "%"#{keywords}"%")
+    </if>
+  </select>
   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

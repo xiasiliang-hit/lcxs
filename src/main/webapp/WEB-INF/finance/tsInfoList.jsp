@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div>
 	
 </div>
-<form class="form-inline definewidth m20" action="ts/getTsInfo/${vo.vid}" method="post">
+<form class="form-inline definewidth m20" action="ts/getTsInfo" method="post">
     关键字：
     <input type="text" name="keywords" id="keywords"class="abc input-default" placeholder="请输入手机号或者姓名" value="${vo.keywords }">&nbsp;&nbsp;  
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
@@ -54,10 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
-        <th>推手邀请码</th>
+        <th>推手编号</th>
         <th>电话号码</th>
-     	<th>支付宝</th>
-        <th>真实姓名</th>
+     	<th>支付宝姓名</th>
         <th>未打款金额</th>
         <th>已打款金额</th>
         <th>邀请人数</th>
@@ -66,22 +66,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </tr>
     </thead>
        <c:forEach items="${pageModel.list}" var="u">
-	     <tr>
-              <td>${u.tsid} </td>
-              <td>${u.phone}</td>
-        	  <td>${u.ailpay}</td>
-        	  <td>${u.realname}</td>
-        	  <td>${u.ljmoney}</td>
-        	  <td>${u.dkmoney}</td>
-        	  <td>${u.yqren}</td>
-        	  <td>${u.nexttime}</td>
-             <td>
-                 <a  onclick="details(${u.tsid})" href="javascript:;">打款</a>
-             </td>
-         </tr>
+           <tr>
+               <td class="_vid">${u.vid} </td>
+               <td>${u.phone} </td>
+               <td>${u.realname}</td>
+               <td id="_ljm">${u.ljmoney}</td>
+               <td id="_dkm">${u.dkmoney}</td>
+               <td>${u.count}</td>
+               <td>${u.mtime}</td>
+               <shiro:hasPermission name="FRIENDS_ALL">
+                   <td>
+                       <a href="javascript:;" onclick="payMoney(${u.vid})">打款</a>
+                       <a href="user/getFriendInfo/${u.vid}">详情</a>
+                   </td>
+               </shiro:hasPermission>
+           </tr>
         </c:forEach>
 </table>
-<form action="ts/getTsInfo/${vo.vid}" id="pager" name="pager" method="post">
+<form action="ts/getTsInfo" id="pager" name="pager" method="post">
    <input type="hidden" name="pageNum" id="pageNum" value="${pageModel.pageNum}">
    <input type="hidden" name="keywords" value="${vo.keywords }">  
     <input type="hidden" name="pageSize" id="pageSize" value="${pageModel.pageSize}">
@@ -90,16 +92,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <%@include file="../../pageBar.jsp" %>
 </div>
 <script>
-    function details(tsid){
+    function payMoney(vid){
         layer.open({
-            type: 2,
-            title:  false,
-            shadeClose: true,
-            shade: 0.8,
-            area: ['500px', '90%'],
-            content: '<%=path%>/ts/passMoney/'+tsid //iframe的url
-        });
-    };
-    </script>
+                type: 1
+                ,title: '确认打款吗？'
+                ,closeBtn: false
+                ,area: '300px;'
+                ,shade: 0.8
+                ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                ,btn: ['确认', '取消']
+                ,btnAlign: 'c'
+                ,moveType: 1 //拖拽模式，0或者1
+                ,content:'<div style="line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="form-group" style="padding: 15px; margin-bottom: 5px;"><label >填写打款金额</label><input id="ydkmoney" type="text" class="form-control" placeholder="请输入" style="margin: 0; padding: 0 20px;"></div></div>'
+                ,yes:function(index,layero){
+                    var ydk = $('#ydkmoney').val();
+                    var invi={
+                        userid:vid,
+                        dkmoney:ydk,
+                    }
+                    $.ajax({
+                            type: "Post",
+                            contentType: "application/json; charset=utf-8",
+                            url: "user/payMoneyForUser",
+                            data: JSON.stringify(invi),
+                            success: function(data){
+                                var dataObj=eval("("+data+")");
+                                if(dataObj.code==1){
+
+
+                                    layer.msg('打款成功!', {
+                                        icon: 6,
+                                        time: 1000
+                                    }, function(){
+                                        location.reload();
+                                    });
+                                }else{
+                                    layer.msg('打款金额不能比未领取金额大!',{
+                                        icon: 5,
+                                        time: 1000
+                                    }, function(){
+                                        location.reload();
+                                    });
+                                }
+                            },
+                            error:function(e){
+                                alert("错误！！");
+                            }
+                        }
+                    )
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                }
+            }
+        )}
+</script>
 </body>
 </html>

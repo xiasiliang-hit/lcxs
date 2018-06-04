@@ -59,4 +59,8 @@ public interface invitationBeanMapper {
      * 查询邀请信息
      */
     List<friendMessage> queryFriendMessage(BaseConditionVO vo);
+    /*
+    查询推手信息
+     */
+    List<friendMessage> queryTs(BaseConditionVO vo);
 }

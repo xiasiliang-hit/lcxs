@@ -2,6 +2,8 @@ package com.lcxs.controller.finance;
 
 import javax.annotation.Resource;
 
+import com.lcxs.model.base.friendMessage;
+import com.lcxs.model.base.invitationBean;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,13 @@ public class TsController {
 	@Resource
 	private IUserTsService utService;
 	//显示Ts信息
+		@RequestMapping("/getTsInfo")
+		public String queryTs(Model model,BaseConditionVO vo){
+			PageInfo<friendMessage> list = tsService.queryTs(vo);
+			model.addAttribute("pageModel",list);
+			model.addAttribute("vo",vo);
+			return "finance/tsInfoList";
+		}
 		@RequestMapping("/getTsInfo/{vid}")
 		public String queryAll(Model model,BaseConditionVO vo,@PathVariable Long vid){
 			vo.setVid(vid);
