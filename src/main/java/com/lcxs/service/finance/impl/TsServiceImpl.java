@@ -7,8 +7,11 @@ import javax.annotation.Resource;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lcxs.mapper.base.invitationBeanMapper;
 import com.lcxs.mapper.base.userBeanMapper;
 import com.lcxs.mapper.finance.TsBeanMapper;
+import com.lcxs.model.base.friendMessage;
+import com.lcxs.model.base.invitationBean;
 import com.lcxs.model.base.userBean;
 import com.lcxs.model.finance.TsBean;
 import com.lcxs.model.finance.UserTsBean;
@@ -26,6 +29,8 @@ public class TsServiceImpl implements ITsService {
     private userBeanMapper userMapper;
     @Resource
     private UserTsServiceImpl utMapper;
+    @Resource
+    private invitationBeanMapper inMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -121,6 +126,18 @@ public class TsServiceImpl implements ITsService {
     public int updatePassMoney(String tsid) {
 
         return tsMapper.updatePassMoney(tsid);
+    }
+
+    @Override
+    public PageInfo<friendMessage> queryTs(BaseConditionVO vo) {
+        PageHelper.startPage(vo.getPageNum(),vo.getPageSize());
+        List<friendMessage> list=inMapper.queryTs(vo);
+        for (int i = 0; i < list.size(); i++) {
+            Integer lis = userMapper.findFriendAll(Long.valueOf(list.get(i).getVid()));
+            list.get(i).setCount(lis);
+        }
+        PageInfo<friendMessage> pageinfo=new PageInfo<friendMessage>(list);
+        return pageinfo;
     }
 
 

@@ -3,6 +3,8 @@ package com.lcxs.service.finance;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.lcxs.model.base.friendMessage;
+import com.lcxs.model.base.invitationBean;
 import com.lcxs.model.finance.TsBean;
 import com.lcxs.utils.BaseConditionVO;
 
@@ -53,5 +55,9 @@ public interface ITsService {
 	 * @return
 	 */
 	int updatePassMoney(String tsid);
+	/*
+	*查询所有推手
+	*/
+	PageInfo<friendMessage> queryTs(BaseConditionVO vo);
 
 }

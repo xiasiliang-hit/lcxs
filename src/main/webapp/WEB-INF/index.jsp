@@ -94,12 +94,7 @@
                         id : '5',
                         text : '专属客户',
                         href : 'staff/findUserByStaffSid/'+${staff.stype}+"/"+${staff.sid}
-                    },
-                        {
-                            id : '6',
-                            text : '推手用户回单',
-                            href : 'receipt/queryReceiptData'
-                        }
+                    }
 					]
 				} ]
 			} ,{
