@@ -130,10 +130,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		<td><input type="text" name="texttime" placeholder="如：1" value="${pcase.texttime}"/></td>
     	</tr> 
     	<tr>
-		         <td  class="tableleft">全网最高</td>
+		         <td  class="tableleft">保障比例</td>value
 			     <td>
-	        			<input type="radio" name="top" id="top1" value="1" <c:if test="${pcase.top==1}">checked="checked"</c:if>/> 最高
-	        			<input type="radio" name="top" id="top2" value="2" <c:if test="${pcase.top==2}">checked="checked"</c:if>/> 不是
+	        			<input type="text" name="top" value="${pcase.top}" />
 	             </td>
     	</tr>
     	

@@ -107,8 +107,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<tr>
          <td  class="tableleft">盈利类型</td>
         	<td>
-        	<input type="radio" name="typesyl" id="radio1" value="1" <c:if test="${product.typesyl==1}">checked="checked"</c:if>/> 稳健	
-        	<input type="radio" name="typesyl" id="radio2" value="2" <c:if test="${product.typesyl==2}">checked="checked"</c:if>/> 高返
+        	<input type="radio" name="typesyl" id="radio1" value="1" <c:if test="${product.typesyl==1}">checked="checked"</c:if>/> 稳健
+	        <input type="radio" name="typesyl" id="radio2" value="2" <c:if test="${product.typesyl==2}">checked="checked"</c:if>/> 高返
+            <input type="radio" name="typesyl" id="radio3" value="3" <c:if test="${product.typesyl==3}">checked="checked"</c:if>/> 信用
         	</td>
     	</tr>
     	<tr>
