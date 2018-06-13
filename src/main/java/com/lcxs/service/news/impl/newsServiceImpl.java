@@ -25,11 +25,7 @@ public class newsServiceImpl implements INewsService{
         PageHelper.startPage(vo.getPageNum(),vo.getPageSize());
         List<newsBean> list=nwMapper.queryAll(vo);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getContext().length()<15){
-                list.get(i).setContext(list.get(i).getContext().substring(0,list.get(i).getContext().length())+"...");
-            }else {
-                list.get(i).setContext(list.get(i).getContext().substring(0, 15) + "...");
-            }
+            list.get(i).setRemark(list.get(i).getRemark().substring(0,15)+"...");
         }
         PageInfo<newsBean> pageinfo=new PageInfo<newsBean>(list);
         return pageinfo;

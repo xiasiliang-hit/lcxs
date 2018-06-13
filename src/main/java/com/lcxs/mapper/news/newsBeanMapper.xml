@@ -11,9 +11,11 @@
     <result column="collection" property="collection" jdbcType="BIGINT" />
     <result column="ntime" property="ntime" jdbcType="VARCHAR" />
     <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="News_Column_List" >
-    id, title, context, source, praise, collection, ntime, imgurl
+    id, title, context, source, praise, collection, ntime, imgurl,remark,type
   </sql>
 
   <select id="queryAll" resultType="com.lcxs.model.news.newsBean" parameterType="com.lcxs.utils.BaseConditionVO" >
@@ -23,15 +25,16 @@
     <if test="keywords!=null">
       where title like "%"#{keywords}"%"
     </if>
+    ORDER BY ntime DESC
   </select>
   <delete id="deleteByNewsid" parameterType="java.lang.Long">
     delete from c_news where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lcxs.model.news.newsBean">
-    insert into c_news(id,title,context,source,praise,collection,ntime,imgurl)
+    insert into c_news(id,title,context,source,praise,collection,ntime,imgurl,remark,type)
     VALUES (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR},
       #{source,jdbcType=VARCHAR}, #{praise,jdbcType=BIGINT}, #{collection,jdbcType=BIGINT},
-      #{ntime,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR})
+      #{ntime,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{type,jdbcType=INTEGER})
   </insert>
   <select id="findByid" resultType="com.lcxs.model.news.newsBean" parameterType="java.lang.Long">
     SELECT
@@ -49,7 +52,9 @@
     praise=#{praise,jdbcType=BIGINT},
     collection=#{collection,jdbcType=BIGINT},
     ntime=#{ntime,jdbcType=VARCHAR},
-    imgurl=#{imgurl,jdbcType=VARCHAR}
+    imgurl=#{imgurl,jdbcType=VARCHAR},
+    remark=#{remark,jdbcType=VARCHAR},
+    type=#{type,jdbcType=INTEGER}
     WHERE id=#{id,jdbcType=BIGINT}
 
   </update>

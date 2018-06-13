@@ -111,6 +111,11 @@
             </td>
         </tr>
         <tr>
+            <td  class="tableleft">新闻摘要</td>
+            <td><textarea id="TextArea2" class="ckeditor" cols="30" rows="2" name="remark" placeholder="请输入新闻摘要" >${news.remark}</textarea>
+            </td>
+        </tr>
+        <tr>
             <td  class="tableleft">新闻图片</td>
             <td>
                 <div class="div1">
@@ -125,7 +130,14 @@
             <td width="10%" class="tableleft">新闻时间</td>
             <td><input type="text" name="ntime" id="ntime" style="margin-top:10px; height:24px;width:150px;font-size:15px;" value="${news.ntime}"></td>
         </tr>
-
+        <tr>
+            <td class="tableleft">新闻类别</td>
+            <td>
+            <input type="radio"  name="type" value="1" <c:if test="${news.type==1}">checked="checked"</c:if>/> 先生原创
+            <input type="radio"  name="type" value="2" <c:if test="${news.type==2}">checked="checked"</c:if>/> 行业资讯
+            <input type="radio"  name="type" value="3" <c:if test="${news.type==3}">checked="checked"</c:if>/> 活动资讯
+            </td>
+        </tr>
         <tr>
             <td class="tableleft"></td>
             <td>
@@ -175,6 +187,7 @@
     }
     $(function () {
         CKEDITOR.replace('TextArea1', { height: '150px' });
+        CKEDITOR.replace('TextArea2', { height: '150px' });
     });
 
 
@@ -198,14 +211,16 @@
                     required:true,
                     digits:true
                 },
+                remark:{
+                    required:true,
+                }
             },
             messages:{
                 title:{
                     required:"请输入信息",
-
                 },
                 source:{
-                    required:"请输入"
+                    required:"请输入来源"
                 },
                 context:{
                     required:"请输入信息",
@@ -217,6 +232,9 @@
                 collection:{
                     required:"请输入信息",
                     digits:"请输入数字收藏数",
+                },
+                remark:{
+                    required:"请输入摘要",
                 }
             }
         });

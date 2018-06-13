@@ -58,6 +58,7 @@
         <th>点赞数量</th>
         <th>收藏数量</th>
         <th>新闻时间</th>
+        <th>新闻类别</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -65,11 +66,12 @@
         <tr>
             <td>${u.id}</td>
             <td>${u.title}</td>
-            <td>${u.context}</td>
+            <td>${u.remark}</td>
             <td>${u.source}</td>
             <td>${u.praise}</td>
             <td>${u.collection}</td>
             <td>${u.ntime}</td>
+            <td>${u.type==1?'先生原创':u.type==2?'行业资讯':'活动资讯'}</td>
             <td>
                 <a href="news/findByid/${u.id }">新闻详情</a>
                 <a href="news/goToUpdate/${u.id }">编辑</a>

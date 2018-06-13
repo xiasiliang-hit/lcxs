@@ -68,15 +68,23 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12" style="padding: 0px 0px 0px 70px">
+                                    <h4>新闻摘要</h4>
+                                    ${news.remark}
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px 0px 0px 70px">
                                     <h4>新闻内容</h4>
                                     ${news.context}
                                 </div>
+
                             </div>
                             <div class="client-detail">
                                 <div class="full-height-scroll">
                                     <ul class="list-group clear-list">
                                         <li class="list-group-item">
                                             <span class="pull-right"> ${news.source} </span> <i class="fa ">新闻来源</i>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="pull-right">${news.type==1?"先生原创":news.type==2?"行业资讯":"活动资讯"}</span><i class="fa ">新闻类别</i>
                                         </li>
                                         <li class="list-group-item fist-item">
                                             <span class="pull-right"> ${news.praise }</span> <i class="fa ">点赞数</i>
@@ -87,7 +95,6 @@
                                         <li class="list-group-item">
                                             <span class="pull-right"> ${news.ntime } </span> <i class="fa ">新闻时间</i>
                                         </li>
-
 
 
                                     </ul>
