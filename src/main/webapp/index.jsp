@@ -193,8 +193,12 @@
                     text : '新闻管理',
                     items : [ {
                         id : '1',
-                        text : '新闻清单',
+                        text : '新闻列表',
                         href : 'news/findAll'
+                    },{
+                        id : '2',
+                        text : '消息列表',
+                        href : 'message/findAll'
                     }
                     ]
                 }]

@@ -173,4 +173,8 @@
       mtime = #{mtime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <insert id="insertMoney" parameterType="com.lcxs.model.base.invitationBean">
+    insert into c_user_money(vid,dmoney,mtime)
+    VALUES (#{userid,jdbcType=BIGINT},#{dkmoney,jdbcType=DOUBLE},#{mtime,jdbcType=VARCHAR})
+  </insert>
 </mapper>

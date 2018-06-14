@@ -63,4 +63,8 @@ public interface invitationBeanMapper {
     查询推手信息
      */
     List<friendMessage> queryTs(BaseConditionVO vo);
+    /*
+    插入打款流水
+     */
+    int insertMoney(invitationBean record);
 }

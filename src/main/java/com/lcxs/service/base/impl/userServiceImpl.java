@@ -233,6 +233,7 @@ public class userServiceImpl implements IUserService{
 		PrintWriter pw = null;
 		String json="";
 		invitationBean in = inMapper.selectByUserid(invi.getUserid());
+		invitationBean in2 = inMapper.selectByUserid(invi.getUserid());
 		if(invi.getDkmoney()>in.getLjmoney()){
 			try {
 				pw=response.getWriter();
@@ -245,6 +246,9 @@ public class userServiceImpl implements IUserService{
 				e.printStackTrace();
 			}
 		}else{
+			in2.setMtime(Time.getTime());
+			in2.setDkmoney(invi.getDkmoney());
+			inMapper.insertMoney(in2);
 			in.setDkmoney(in.getDkmoney()+invi.getDkmoney());
 			in.setMtime(Time.getTime());
 			in.setLjmoney(in.getLjmoney()-invi.getDkmoney());
