@@ -97,6 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		         <td width="10%" class="tableleft">红包使用说明</td>
 		       	<td><input type="text" name="context" placeholder="请输入红包使用说明" value="${red.context}"/></td>
     	</tr>
+	<tr>
+		<td width="10%" class="tableleft">红包类型</td>
+		<td><input type="radio"  name="status" value="1" <c:if test="${red.status==1}">checked="checked"</c:if>/> 正常红包
+		<input type="radio"  name="status" value="3" <c:if test="${red.status==3}">checked="checked"</c:if>/> 活动红包</td>
+	</tr>
     	<tr>
 		   		<td>
 		            <button type="submit" class="btn btn-primary">保存</button> 

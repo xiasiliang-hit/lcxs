@@ -80,11 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	  <td>${u.context}</td>
         	  <td>${u.ctime}</td>
         	  <td>${u.dtime}</td>
-        	  <td>${u.status==1?'正常':'过期'}</td>
+        	  <td>${u.status==2?'过期':'正常'}</td>
         	  <shiro:hasPermission name="RED_ALL">
             <td style="width: 100px">
                 <a href="cred/goToUpdate/${u.id }">编辑</a>  
-                <c:if test="${u.status==1}">
+                <c:if test="${u.status!=2}">
                      <a href="cred/deleteByRedid/${u.redid}"   onclick="return confirm('确定下架?');">下架</a> 
                 </c:if> 
                 <c:if test="${u.status==2}">
